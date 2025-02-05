@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Case Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <button onclick="managerAccess()">Manager Access</button>
+        <!-- Add New Case Button in the Navigation Bar -->
+        <button onclick="openAddCaseForm()">Create Case</button>
+        
+        <button onclick="window.location.href='reports.html'">Reports</button>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="Search cases..." onkeyup="searchCases()">
+
+    <!-- Case List Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Case ID</th>
+                <th>Customer</th>
+                <th>Issue</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="cases-list">
+            <!-- Cases will be loaded here dynamically -->
+        </tbody>
+    </table>
+    <!-- Add Case Modal -->
+<div id="add-case-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddCaseModal()">&times;</span>
+        <h2>Add New Case</h2>
+        <form id="add-case-form">
+            <div class="form-group">
+                <label for="new-customer-name">Customer Name</label>
+                <input type="text" id="new-customer-name" placeholder="Enter customer name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="new-issue-description">Issue Description</label>
+                <textarea id="new-issue-description" placeholder="Describe the issue" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="new-status">Status</label>
+                <select id="new-status">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+
+            <button type="submit" class="save-btn">Add Case</button>
+        </form>
+    </div>
+</div>
+
+
+   <!-- Case Edit Modal (Updated Design) -->
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Edit Case Details</h2>
+        <form id="edit-case-form">
+            <div class="form-group">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" placeholder="Enter customer name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="issue-description">Issue Description</label>
+                <textarea id="issue-description" placeholder="Describe the issue" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status">
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </div>
+
+            <button type="submit" class="save-btn">Update Case</button>
+        </form>
+    </div>
+</div>
+
+    </div>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+    <script>// Redirect to login page if not logged in
+        if (!localStorage.getItem("loggedInUser")) {
+            window.location.href = "login.html";
+        }
+        </script>
+</body>
+</html>
